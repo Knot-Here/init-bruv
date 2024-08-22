@@ -1,0 +1,8 @@
+vim
+neovim
+neofetch
+curl
+tmux
+fzf
+docker.io
+htop
