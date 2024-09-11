@@ -1,0 +1,10 @@
+
+- New window: `Ctrl + N`
+- New incognito window: `Ctrl + Shift + N`
+
+- New tab: `Ctrl + T`
+- Close current tab: `Ctrl + W`
+- Move to next tab: `Ctrl + Tab` or `Ctrl + Page down`
+- Move to previous tab: `Ctrl + Tab` or `Ctrl + Shift + Page Down`
+
+- Go to url bar: `Ctrl + L`
