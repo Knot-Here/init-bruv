@@ -6,3 +6,7 @@ tmux
 fzf
 docker.io
 htop
+python3-pip
+git
+jq
+cointop
