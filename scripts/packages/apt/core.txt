@@ -1,12 +1,13 @@
-vim
 neovim
 neofetch
 curl
 tmux
 fzf
 htop
-python3-pip
-pipx
 git
 jq
-cointop
+
+
+luarocks
+lua5.x
+ripgrep
