@@ -1,1 +1,5 @@
 datasette
+csv-diff
+sqlite-utils
+datasette-search-all
+
