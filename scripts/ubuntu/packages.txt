@@ -1,5 +1,3 @@
-vim
-neovim
 neofetch
 curl
 tmux
@@ -10,3 +8,4 @@ pipx
 git
 jq
 cointop
+zathura
