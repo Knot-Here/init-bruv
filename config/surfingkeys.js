@@ -47,6 +47,132 @@ api.mapkey('ze', 'ETH price (CoinGecko)', function () {
   })();
 });
 
+// Method 1: Using Front.registerInlineQuery for :price command
+api.Front.registerInlineQuery({
+    url: function(query) {
+        // This is just a placeholder - we'll handle it in the callback
+        return "https://api.coingecko.com/api/v3/simple/price";
+    },
+    parseResult: async function(res, query) {
+        const symbol = query.trim().toLowerCase();
+        
+        // Map common symbols to CoinGecko IDs
+        const coinMap = {
+            'btc': 'bitcoin',
+            'bitcoin': 'bitcoin',
+            'eth': 'ethereum',
+            'ethereum': 'ethereum',
+            'sol': 'solana',
+            'solana': 'solana',
+            'bnb': 'binancecoin',
+            'xrp': 'ripple',
+            'ada': 'cardano',
+            'doge': 'dogecoin',
+            'avax': 'avalanche-2',
+            'dot': 'polkadot',
+            'matic': 'matic-network',
+            'link': 'chainlink',
+            'uni': 'uniswap',
+            'atom': 'cosmos'
+        };
+        
+        const coinId = coinMap[symbol];
+        
+        if (!coinId) {
+            api.Front.showBanner(`Unknown coin: ${symbol}. Try: btc, eth, sol, bnb, ada, doge`, 2000);
+            return [];
+        }
+        
+        try {
+            const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`);
+            const data = await response.json();
+            const price = data[coinId]?.usd;
+            
+            if (price) {
+                // Show banner immediately
+                const symbols = {
+                    'bitcoin': '₿',
+                    'ethereum': 'Ξ',
+                    'solana': '◎',
+                    'dogecoin': 'Ð'
+                };
+                const sym = symbols[coinId] || '';
+                
+                showCustomBanner(`${sym} ${symbol.toUpperCase()} = $${price.toLocaleString()}`, 3000, {
+                    background: coinId === 'bitcoin' ? '#f7931a' : 
+                               coinId === 'ethereum' ? '#627eea' : '#4CAF50',
+                    top: '70px'
+                });
+            }
+        } catch (e) {
+            api.Front.showBanner(`Error fetching ${symbol}: ${e.message}`, 2000);
+        }
+        
+        return [];
+    },
+    alias: 'price'
+});
+
+// Method 2: Alternative using command execution
+// This creates a command you can use like :price btc
+api.Front.executeCommand = function(cmd) {
+    const [command, ...args] = cmd.split(' ');
+    
+    if (command === 'price' || command === 'p') {
+        const symbol = args[0]?.toLowerCase();
+        
+        const coinMap = {
+            'btc': 'bitcoin',
+            'eth': 'ethereum',
+            'sol': 'solana',
+            'bnb': 'binancecoin',
+            'ada': 'cardano',
+            'doge': 'dogecoin'
+        };
+        
+        const coinId = coinMap[symbol] || symbol;
+        
+        (async () => {
+            try {
+                const r = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`);
+                const data = await r.json();
+                const price = data[coinId]?.usd;
+                
+                if (price) {
+                    showCustomBanner(`${symbol.toUpperCase()} = $${price.toLocaleString()}`, 3000, {
+                        background: '#4CAF50',
+                        top: '70px'
+                    });
+                } else {
+                    showCustomBanner(`Unknown coin: ${symbol}`, 2000, {
+                        background: '#e74c3c',
+                        top: '70px'
+                    });
+                }
+            } catch (e) {
+                showCustomBanner(`Error: ${e.message}`, 2000, {
+                    background: '#e74c3c',
+                    top: '70px'
+                });
+            }
+        })();
+    }
+};
+
+// Method 3: Simple search alias that opens CoinGecko
+// Type "op btc" in omnibar
+api.addSearchAlias('c', 'CoinGecko Price', 'https://www.coingecko.com/en/coins/', 's', 
+    'https://api.coingecko.com/api/v3/search?query=', 
+    function(response) {
+        var res = JSON.parse(response.text);
+        return res.coins.map(function(c) {
+            return c.id;
+        });
+    }
+);
+
+
+
 
 
 // Optional: Create a custom styled banner function for reuse
