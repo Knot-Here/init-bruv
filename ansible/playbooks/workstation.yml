@@ -5,7 +5,6 @@
   roles:
     - base
     - packages
-    - development
     - git
     - neovim
     - tmux
