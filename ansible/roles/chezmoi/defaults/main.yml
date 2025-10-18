@@ -1,5 +1,5 @@
-dotfiles_repo: "https://github.com/Knot-Here/knot-stow.git"
-dotfiles_branch: "main"   # fallback if group_vars/all.yml doesn’t set it
-chezmoi_bin: "{{ (ansible_env.HOME ~ '/.local/bin/chezmoi') if ansible_os_family != 'Darwin' else '/usr/local/bin/chezmoi' }}"
-user_home: "{{ ansible_env.HOME }}"
+user_home: "{{ ansible_user_dir | default(lookup('env','HOME')) }}"
+chezmoi_bin: "{{ user_home }}/.local/bin/chezmoi"
 
+dotfiles_repo: "https://github.com/Knot-Here/knot-stow.git"
+dotfiles_branch: "main"

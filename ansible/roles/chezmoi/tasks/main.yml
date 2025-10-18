@@ -8,7 +8,7 @@
 - name: Fail if chezmoi is missing (run bootstrap first)
   when: not chez_stat.stat.exists
   fail:
-    msg: "chezmoi not installed. Run: ansible-playbook -K playbooks/bootstrap.yml"
+    msg: "chezmoi not installed for {{ user_home }}. Run: ansible-playbook -K playbooks/bootstrap.yml"
 
 - name: Initialize chezmoi from your repo (first run only)
   become: false
