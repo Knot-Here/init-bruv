@@ -18,6 +18,8 @@ arch_packages_extra:
   - python
   - nodejs
   - npm
+  - jq
+  - zathura
 
 debian_packages_extra:
   - build-essential

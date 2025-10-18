@@ -1,6 +1,8 @@
 - hosts: local
   become: true
   gather_facts: true
+  vars_files:
+    - ../group_vars/all.yml
 
   roles:
     - base
@@ -8,5 +10,5 @@
     - git
     - neovim
     - tmux
-    - chezmoi
+    #- chezmoi
 

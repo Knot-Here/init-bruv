@@ -1,0 +1,8 @@
+---
+- name: Include Arch-specific tasks
+  include_tasks: arch.yml
+  when: ansible_os_family == "Archlinux"
+
+- name: Include Debian-specific tasks  
+  include_tasks: debian.yml
+  when: ansible_os_family == "Debian"

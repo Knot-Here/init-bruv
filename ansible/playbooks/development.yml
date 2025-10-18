@@ -3,6 +3,8 @@
   hosts: development
   become: true
   gather_facts: true
+  vars_files:
+    - ../group_vars/all.yml
 
   pre_tasks:
     - name: Debug - Show groups this host belongs to
@@ -16,4 +18,4 @@
     - git
     - neovim
     - tmux
-    - chezmoi
+    #- chezmoi

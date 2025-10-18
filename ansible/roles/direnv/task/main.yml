@@ -1,0 +1,14 @@
+---
+- name: Ensure direnv installed (Arch)
+  when: ansible_os_family == "Archlinux"
+  pacman:
+    name: direnv
+    state: present
+
+- name: Ensure direnv installed (Debian/Ubuntu)
+  when: ansible_os_family == "Debian"
+  apt:
+    name: direnv
+    state: present
+
+
