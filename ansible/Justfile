@@ -6,3 +6,6 @@ bootstrap:
 up:
     ansible-playbook -K playbooks/workstation.yml
 
+dev:
+    ansible-playbook -K playbooks/development.yml
+

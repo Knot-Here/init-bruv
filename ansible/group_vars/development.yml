@@ -1,0 +1,48 @@
+# Development-specific packages
+development_packages:
+  - docker
+  - docker-compose
+  - kubectl
+  - helm
+  - terraform
+  - aws-cli
+  - azure-cli
+  - google-cloud-sdk
+  - postgresql
+  - redis
+  - mongodb-tools
+  - sqlite
+  - pgcli
+  - redis-tools
+
+# Development GUI tools
+dev_gui_packages:
+  - dbeaver
+  - postman
+  - insomnia
+  - vscode
+  - android-studio
+  - intellij-idea-community-edition
+
+# Development languages and tools
+dev_lang_packages:
+  - go
+  - rust
+  - python-pip
+  - python-virtualenv
+  - jdk-openjdk
+  - maven
+  - gradle
+
+# Development utilities
+dev_utils_packages:
+  - jq
+  - yq
+  - httpie
+  - bat
+  - exa
+  - zoxide
+  - fzf
+  - ripgrep
+  - fd
+  - tree

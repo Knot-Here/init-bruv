@@ -1,0 +1,14 @@
+---
+- name: Setup Development Environment
+  hosts: development
+  become: true
+  gather_facts: true
+
+  roles:
+    - base
+    - packages
+    - development
+    - git
+    - neovim
+    - tmux
+    - chezmoi
