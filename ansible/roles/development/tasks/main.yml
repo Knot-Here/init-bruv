@@ -7,12 +7,3 @@
     state: directory
     mode: "0755"
 
-- name: Install development tools
-  become: true
-  package:
-    name:
-      - make
-      - jq
-      - direnv
-    state: present
-
