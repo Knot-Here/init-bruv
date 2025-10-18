@@ -1,0 +1,9 @@
+---
+# Add dev tools here as you need (docker, podman, build tools, etc.)
+- name: Create ~/bin for user scripts
+  become: false
+  file:
+    path: "{{ lookup('env','HOME') }}/bin"
+    state: directory
+    mode: "0755"
+

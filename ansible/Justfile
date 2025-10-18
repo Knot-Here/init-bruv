@@ -1,0 +1,8 @@
+# Run from ansible/ directory: `just bootstrap` then `just up`
+
+bootstrap:
+    ansible-playbook -K playbooks/bootstrap.yml
+
+up:
+    ansible-playbook -K playbooks/workstation.yml
+

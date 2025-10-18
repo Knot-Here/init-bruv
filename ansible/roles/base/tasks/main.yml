@@ -1,0 +1,8 @@
+---
+# Keep this tiny for now; add timezone/locales/users later if you want.
+- name: Ensure /usr/local/bin exists
+  file:
+    path: /usr/local/bin
+    state: directory
+    mode: "0755"
+

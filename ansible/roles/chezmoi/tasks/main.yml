@@ -1,0 +1,25 @@
+---
+- name: Ensure chezmoi is on PATH
+  become: false
+  stat:
+    path: "{{ lookup('env','HOME') }}/.local/bin/chezmoi"
+  register: chez_bin
+
+- name: Fail if chezmoi is missing (run bootstrap first)
+  when: not chez_bin.stat.exists
+  fail:
+    msg: "chezmoi not installed. Run: ansible-playbook -K playbooks/bootstrap.yml"
+
+- name: Initialize chezmoi from your repo (first run only)
+  become: false
+  args:
+    chdir: "{{ lookup('env','HOME') }}"
+  shell: |
+    {{ lookup('env','HOME') }}/.local/bin/chezmoi init --branch {{ dotfiles_branch }} --apply {{ dotfiles_repo }}
+  args:
+    creates: "{{ lookup('env','HOME') }}/.local/share/chezmoi/.git"
+
+- name: Apply chezmoi (subsequent runs keep things in sync)
+  become: false
+  shell: "{{ lookup('env','HOME') }}/.local/bin/chezmoi apply -v"
+

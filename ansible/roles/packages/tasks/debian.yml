@@ -1,0 +1,10 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: true
+
+- name: Install packages (Debian/Ubuntu)
+  apt:
+    name: "{{ common_packages + debian_packages_extra }}"
+    state: present
+

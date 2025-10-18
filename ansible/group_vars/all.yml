@@ -1,0 +1,29 @@
+user: "{{ lookup('env','USER') | default('knot', true) }}"
+dotfiles_repo: "https://github.com/Knot-Here/knot-stow.git"   
+dotfiles_branch: "main"
+
+common_packages:
+  - git
+  - curl
+  - wget
+  - unzip
+  - rsync
+  - ripgrep
+  - fd
+
+arch_packages_extra:
+  - base-devel
+  - neovim
+  - tmux
+  - python
+  - nodejs
+  - npm
+
+debian_packages_extra:
+  - build-essential
+  - neovim
+  - tmux
+  - python3
+  - nodejs
+  - npm
+

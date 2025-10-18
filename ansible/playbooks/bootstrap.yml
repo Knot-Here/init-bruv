@@ -1,0 +1,34 @@
+- hosts: local
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../group_vars/all.yml
+
+  tasks:
+    - name: Ensure base packages (generic)
+      package:
+        name: "{{ common_packages }}"
+        state: present
+      register: generic_pkgs
+      failed_when: false
+
+    - name: Install chezmoi (once)
+      become: false
+      shell: |
+        sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+      args:
+        creates: "/home/{{ user }}/.local/bin/chezmoi"
+
+    - name: Install mise (rtx) (once)
+      become: false
+      shell: curl -fsSL https://mise.jdx.dev/install.sh | sh
+      args:
+        creates: "/home/{{ user }}/.local/bin/mise"
+
+    - name: Enable sshd on Arch (so you can SSH in)
+      when: ansible_os_family == "Archlinux"
+      systemd:
+        name: sshd
+        enabled: true
+        state: started
+

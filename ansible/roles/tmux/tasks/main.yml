@@ -1,0 +1,13 @@
+---
+- name: Ensure tmux installed (Arch)
+  when: ansible_os_family == "Archlinux"
+  pacman:
+    name: tmux
+    state: present
+
+- name: Ensure tmux installed (Debian/Ubuntu)
+  when: ansible_os_family == "Debian"
+  apt:
+    name: tmux
+    state: present
+

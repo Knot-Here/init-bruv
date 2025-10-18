@@ -1,0 +1,10 @@
+---
+- name: Update pacman cache
+  pacman:
+    update_cache: true
+
+- name: Install packages (Arch)
+  pacman:
+    name: "{{ common_packages + arch_packages_extra }}"
+    state: present
+
