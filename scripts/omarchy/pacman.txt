@@ -1,1 +1,3 @@
 podman
+stow
+direnv
