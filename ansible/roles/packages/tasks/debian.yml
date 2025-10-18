@@ -12,23 +12,23 @@
   apt:
     name: "{{ development_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
+  tags: [packages, debian, development]
 
 - name: Install development GUI packages (Debian/Ubuntu)
   apt:
     name: "{{ dev_gui_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
+  tags: [packages, debian, development]
 
 - name: Install development language packages (Debian/Ubuntu)
   apt:
     name: "{{ dev_lang_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
+  tags: [packages, debian, development]
 
 - name: Install development utility packages (Debian/Ubuntu)
   apt:
     name: "{{ dev_utils_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
+  tags: [packages, debian, development]
 

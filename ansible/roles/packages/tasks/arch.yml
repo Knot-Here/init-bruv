@@ -14,27 +14,23 @@
   pacman:
     name: "{{ development_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
   tags: [packages, arch, development]
 
 - name: Install development GUI packages (Arch)
   pacman:
     name: "{{ dev_gui_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
   tags: [packages, arch, development]
 
 - name: Install development language packages (Arch)
   pacman:
     name: "{{ dev_lang_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
   tags: [packages, arch, development]
 
 - name: Install development utility packages (Arch)
   pacman:
     name: "{{ dev_utils_packages | default([]) }}"
     state: present
-  when: "'development' in group_names"
   tags: [packages, arch, development]
 
