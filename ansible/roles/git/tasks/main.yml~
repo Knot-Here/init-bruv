@@ -1,0 +1,16 @@
+---
+# Simple global identity; tweak as needed or move to group_vars/all.yml
+- name: Set git user.name
+  become: false
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "Knot-Here"
+
+- name: Set git user.email
+  become: false
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "knotquant@protonmail.com"
+
