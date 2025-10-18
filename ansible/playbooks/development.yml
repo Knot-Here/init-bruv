@@ -5,6 +5,7 @@
   gather_facts: true
   vars_files:
     - ../group_vars/all.yml
+    - ../group_vars/development.yml
 
   pre_tasks:
     - name: Debug - Show groups this host belongs to
